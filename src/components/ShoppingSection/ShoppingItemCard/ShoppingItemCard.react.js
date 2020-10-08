@@ -8,7 +8,8 @@ const ShoppingItemCard = ({
   sectionItems,
   removeItem,
   updateItem,
-  moveItem
+  moveItem,
+  stores
 }) => {
   return (
     <Card className="shopping-section__card u-pad-2">
@@ -21,6 +22,7 @@ const ShoppingItemCard = ({
               removeItem={removeItem}
               updateItem={updateItem}
               moveItem={moveItem}
+              stores={stores}
             />
           ))}
         </ListGroup>
@@ -29,7 +31,7 @@ const ShoppingItemCard = ({
   );
 };
 
-const Item = ({ item, removeItem, updateItem, moveItem }) => {
+const Item = ({ item, removeItem, updateItem, moveItem, stores }) => {
   const [showModal, setShowModal] = useState(false);
   const [showMoveModal, setShowMoveModal] = useState(false);
   return (
@@ -59,6 +61,8 @@ const Item = ({ item, removeItem, updateItem, moveItem }) => {
           toggleModal={() => setShowModal(!showModal)}
           item={item}
           onSubmit={updateItem}
+          stores={stores}
+          isUpdating
         />
       )}
       {showMoveModal && (

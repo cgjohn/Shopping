@@ -9,7 +9,8 @@ const ShoppingItemModal = ({
   toggleModal,
   item,
   onSubmit,
-  stores
+  stores,
+  isUpdating = false
 }) => {
   const [itemState, setItemState] = useState(item);
 
@@ -42,6 +43,7 @@ const ShoppingItemModal = ({
           <CreatableSelect
             isClearable
             className="full-width"
+            defaultInputValue={itemState.store || null}
             placeholder="Type to create a new store"
             onChange={newValue =>
               setItemState({ ...itemState, store: newValue.value || "" })
@@ -65,7 +67,7 @@ const ShoppingItemModal = ({
             Cancel
           </Button>
           <Button className="u-mar-l_2" type="submit">
-            Submit
+            {isUpdating ? "Update" : "Submit"}
           </Button>
         </div>
       </form>
