@@ -1,0 +1,30 @@
+.section {
+  min-width: 250px;
+  opacity: 0.8;
+  padding: 64px 32px;
+}
+
+.section__title {
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.section__card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.section__card {
+  width: 100%;
+  margin: 16px 0px;
+}
+
+#btsp .section__list-item {
+  display: flex;
+  align-items: flex-end;
+  border: none;
+  border-bottom: 2px dotted gray;
+  padding: 16px 0px 0px 0px;
+  justify-content: space-between;
+}

@@ -1,0 +1,65 @@
+* {
+  font-family: "comfortaa";
+}
+
+.flex {
+  display: flex;
+
+  &-align-end {
+    align-content: flex-end;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+// Margin Utility Classes
+.u-mar-1 {
+  margin: 8px;
+}
+
+.u-mar-2 {
+  margin: 16px;
+}
+
+.u-mar-l_1 {
+  margin-left: 8px;
+}
+
+.u-mar-l_2 {
+  margin-left: 16px;
+}
+
+.u-mar-r_1 {
+  margin-right: 8px;
+}
+
+.u-mar-r_2 {
+  margin-right: 16px;
+}
+
+// Padding Utility Classes
+.u-pad-1 {
+  padding: 8px;
+}
+
+.u-pad-2 {
+  padding: 16px;
+}
+
+.u-pad-l_1 {
+  padding-left: 8px;
+}
+
+.u-pad-l_2 {
+  padding-left: 16px;
+}
+
+.u-pad-r_1 {
+  padding-right: 8px;
+}
+
+.u-pad-r_2 {
+  padding-right: 16px;
+}

@@ -1,0 +1,22 @@
+.quantity-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+#btsp .quantity-btn {
+  width: 16px;
+  height: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-up {
+  position: relative;
+  top: 3px;
+}
+
+.icon-down {
+  position: relative;
+  bottom: 3px;
+}

@@ -1,0 +1,23 @@
+.home {
+  max-height: 100vh;
+  height: 100vh;
+}
+
+.header {
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  padding: 16px 32px;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 40px;
+  height: 100vh;
+}
