@@ -16,7 +16,7 @@ export default class ShoppingSection extends Component {
     this.state = {
       storeFilter: "",
       sections: undefined,
-      showModal: false,
+      showAddItemModal: false,
       itemState: {
         name: "",
         quantity: 1,
@@ -110,14 +110,14 @@ export default class ShoppingSection extends Component {
       });
   };
 
-  toggleModal = () => {
+  toggleAddItemModal = () => {
     this.setState(state => ({
-      showModal: !state.showModal
+      showAddItemModal: !state.showAddItemModal
     }));
   };
 
   render() {
-    const { sections, itemState, showModal } = this.state;
+    const { sections, itemState, showAddItemModal } = this.state;
 
     if (!this.context) {
       return <div>loading...</div>;
@@ -130,7 +130,7 @@ export default class ShoppingSection extends Component {
     return (
       <div style={{ background: this.props.color }} className="section">
         <h2 className="section__title">{this.props.category}</h2>
-        <Button variant="outline-primary" onClick={this.toggleModal}>
+        <Button variant="outline-primary" onClick={this.toggleAddItemModal}>
           Add Item
         </Button>
         <div className="section__card-container">
@@ -142,13 +142,14 @@ export default class ShoppingSection extends Component {
               updateItem={this.handleUpdateItem}
               moveItem={this.handleMoveItem}
               checkItem={this.handleCheckItem}
+              addItem={this.handleAddItem}
               stores={stores}
             />
           ))}
         </div>
-        {showModal && (
+        {showAddItemModal && (
           <ShoppingItemModal
-            toggleModal={this.toggleModal}
+            toggleModal={this.toggleAddItemModal}
             stores={stores}
             item={itemState}
             onSubmit={this.handleAddItem}

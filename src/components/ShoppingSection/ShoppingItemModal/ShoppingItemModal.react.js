@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import { Modal, Button } from "bootstrapComponents";
 
 import "./form-modal.scss";
 
 const ShoppingItemModal = ({
-  showModal,
   toggleModal,
   item,
   onSubmit,
@@ -20,7 +19,7 @@ const ShoppingItemModal = ({
     toggleModal();
   };
 
-  const selectOptions = stores.reduce((acc, store) => {
+  const selectOptions = stores?.reduce((acc, store) => {
     acc.push({ value: store, label: store });
     return acc;
   }, []);
@@ -42,8 +41,9 @@ const ShoppingItemModal = ({
           Store:
           <CreatableSelect
             isClearable
+            isDisabled
             className="full-width"
-            defaultInputValue={itemState.store || null}
+            defaultInputValue={itemState?.store}
             placeholder="Type to create a new store"
             onChange={newValue =>
               setItemState({ ...itemState, store: newValue.value || "" })

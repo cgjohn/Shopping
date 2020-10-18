@@ -34,6 +34,11 @@
   justify-content: space-between;
 }
 
+#btsp .section__list-item--no-border {
+  border: none;
+  display: flex;
+}
+
 .section__list-item--checked {
   text-decoration: line-through;
 }
@@ -41,5 +46,9 @@
 @media (max-width: 768px) {
   .section {
     padding: 16px;
+  }
+
+  #btsp .card-body {
+    padding: 0;
   }
 }

@@ -10,9 +10,11 @@ const ShoppingItemCard = ({
   updateItem,
   moveItem,
   checkItem,
+  addItem,
   stores
 }) => {
   const [showContent, setShowContent] = useState(true);
+  const [showAddItemModal, setShowAddItemModal] = useState(false);
   const showContentIcon = showContent ? (
     <i class="fas fa-chevron-up" />
   ) : (
@@ -42,7 +44,22 @@ const ShoppingItemCard = ({
                 stores={stores}
               />
             ))}
+            <ListGroup.Item className="section__list-item--no-border">
+              <button className="icon-button--large u-mar-auto">
+                <i
+                  onClick={() => setShowAddItemModal(true)}
+                  class="fas fa-plus"
+                />
+              </button>
+            </ListGroup.Item>
           </ListGroup>
+          {showAddItemModal && (
+            <ShoppingItemModal
+              toggleModal={() => setShowAddItemModal(false)}
+              item={{ store: sectionName, quantity: 1 }}
+              onSubmit={addItem}
+            />
+          )}
         </Card.Body>
       )}
     </Card>
