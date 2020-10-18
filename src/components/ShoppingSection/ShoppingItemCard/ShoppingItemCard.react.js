@@ -9,37 +9,64 @@ const ShoppingItemCard = ({
   removeItem,
   updateItem,
   moveItem,
+  checkItem,
   stores
 }) => {
+  const [showContent, setShowContent] = useState(true);
+  const showContentIcon = showContent ? (
+    <i class="fas fa-chevron-up" />
+  ) : (
+    <i class="fas fa-chevron-down" />
+  );
   return (
-    <Card className="shopping-section__card u-pad-2">
-      <Card.Title>{sectionName}</Card.Title>
-      <Card.Body>
-        <ListGroup>
-          {sectionItems.map(item => (
-            <Item
-              item={item}
-              removeItem={removeItem}
-              updateItem={updateItem}
-              moveItem={moveItem}
-              stores={stores}
-            />
-          ))}
-        </ListGroup>
-      </Card.Body>
+    <Card className="section__card u-pad-2">
+      <Card.Title className="flex flex-justify_space-between">
+        {sectionName}
+        <button
+          className="icon-button"
+          onClick={() => setShowContent(!showContent)}
+        >
+          {showContentIcon}
+        </button>
+      </Card.Title>
+      {showContent && (
+        <Card.Body>
+          <ListGroup>
+            {sectionItems.map(item => (
+              <Item
+                item={item}
+                removeItem={removeItem}
+                updateItem={updateItem}
+                moveItem={moveItem}
+                checkItem={checkItem}
+                stores={stores}
+              />
+            ))}
+          </ListGroup>
+        </Card.Body>
+      )}
     </Card>
   );
 };
 
-const Item = ({ item, removeItem, updateItem, moveItem, stores }) => {
+const Item = ({
+  item,
+  removeItem,
+  updateItem,
+  moveItem,
+  stores,
+  checkItem
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [showMoveModal, setShowMoveModal] = useState(false);
+  const itemClasses = `section__list-item ${item.checked &&
+    "section__list-item--checked"}`;
   return (
-    <ListGroup.Item className="section__list-item">
+    <ListGroup.Item className={itemClasses}>
       {item.name} - {item.quantity}{" "}
       <div>
         <Button variant="light" onClick={() => removeItem(item.id)}>
-          <i class="far fa-trash-alt"></i>
+          <i class="far fa-trash-alt" />
         </Button>
         <Button
           className="u-mar-l_2"
@@ -51,10 +78,17 @@ const Item = ({ item, removeItem, updateItem, moveItem, stores }) => {
         <Button
           className="u-mar-l_2"
           variant="light"
+          onClick={() => checkItem(item.id, !item.checked)}
+        >
+          <i class={`fas fa-${item.checked ? "times" : "check"}`} />
+        </Button>
+        {/* <Button
+          className="u-mar-l_2"
+          variant="light"
           onClick={() => setShowMoveModal(!showMoveModal)}
         >
           Move
-        </Button>
+        </Button> */}
       </div>
       {showModal && (
         <ShoppingItemModal

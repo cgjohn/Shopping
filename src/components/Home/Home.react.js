@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ShoppingSection from "../ShoppingSection/ShoppingSection.react";
 import PantrySection from "components/PantrySection/PantrySection.react";
-import { Button } from "evergreen-ui";
+import { Nav, Button } from "bootstrapComponents";
 import { signInWithGoogle, signOut } from "../../firebase/firebase.utils";
 import AuthContext from "../context/auth-context";
 
@@ -79,6 +79,14 @@ import "./home.scss";
 export default class Home extends Component {
   static contextType = AuthContext;
 
+  constructor() {
+    super();
+
+    this.state = {
+      activeSection: "shopping"
+    };
+  }
+
   render() {
     const currentUser = this.context;
     const loggedIn = Boolean(currentUser);
@@ -91,10 +99,36 @@ export default class Home extends Component {
           {!!currentUser && currentUser.displayName}
           <Button onClick={signOut}>Sign Out</Button>
         </div>
-        <div className="sections">
-          <ShoppingSection category="shopping" color="#ff5e5b" />
-          <PantrySection category="pantry" color="#00cecb" />
-        </div>
+        {window.screen.width >= 768 ? (
+          <div className="sections">
+            <ShoppingSection category="shopping" color="#ff5e5b" />
+            <PantrySection category="pantry" color="#00cecb" />
+          </div>
+        ) : (
+          <div className="sections">
+            <Nav justify variant="tabs">
+              <Nav.Item
+                active={this.state.activeSection === "shopping"}
+                onClick={() => this.setState({ activeSection: "shopping" })}
+                className="u-pad-2"
+              >
+                Shopping
+              </Nav.Item>
+              <Nav.Item
+                active={this.state.activeSection === "pantry"}
+                onClick={() => this.setState({ activeSection: "pantry" })}
+                className="u-pad-2"
+              >
+                Pantry
+              </Nav.Item>
+            </Nav>
+            {this.state.activeSection === "shopping" ? (
+              <ShoppingSection category="shopping" color="#ff5e5b" />
+            ) : (
+              <PantrySection category="pantry" color="#00cecb" />
+            )}
+          </div>
+        )}
       </div>
     );
   }

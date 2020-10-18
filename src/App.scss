@@ -8,6 +8,10 @@
   &-align-end {
     align-content: flex-end;
   }
+
+  &-justify_space-between {
+    justify-content: space-between;
+  }
 }
 
 .full-width {
@@ -62,4 +66,12 @@
 
 .u-pad-r_2 {
   padding-right: 16px;
+}
+
+// ###########  GLOBAL ELEMENT STYLES
+
+.icon-button {
+  border: none;
+  font-size: 12px;
+  border-radius: 100%;
 }

@@ -9,7 +9,7 @@ const ShoppingItemModal = ({ toggleModal, item, onSubmit }) => {
 
   const [itemState, setItemState] = useState({
     ...item,
-    expiration: null
+    expiration: ""
   });
 
   const handleSubmit = e => {

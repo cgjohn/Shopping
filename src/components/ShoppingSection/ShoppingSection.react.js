@@ -32,15 +32,24 @@ export default class ShoppingSection extends Component {
   }
 
   handleMoveItem = item => {
-    console.log("move = ", item, "user = ", this.context.id);
     db.collection("users")
       .doc(this.context.id)
       .collection("items")
       .doc(item.id)
       .update({
         expiration: item.expiration,
-        area: item.area,
+        storage: item.storage,
         category: "pantry"
+      });
+  };
+
+  handleCheckItem = (itemId, checked) => {
+    db.collection("users")
+      .doc(this.context.id)
+      .collection("items")
+      .doc(itemId)
+      .update({
+        checked: checked
       });
   };
 
@@ -132,6 +141,7 @@ export default class ShoppingSection extends Component {
               removeItem={this.handleDeleteItem}
               updateItem={this.handleUpdateItem}
               moveItem={this.handleMoveItem}
+              checkItem={this.handleCheckItem}
               stores={stores}
             />
           ))}
